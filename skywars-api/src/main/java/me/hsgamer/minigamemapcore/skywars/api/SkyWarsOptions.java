@@ -6,8 +6,8 @@ public final class SkyWarsOptions {
         // EMPTY
     }
 
-    private static final String TEAM_SIZE = "team-size";
-    private static final String MIN_TEAMS = "min-teams";
-    private static final String MAX_TEAMS = "max-teams";
-    private static final String DISPLAY_NAME = "display-name";
+    public static final String TEAM_SIZE = "team-size";
+    public static final String MIN_TEAMS = "min-teams";
+    public static final String MAX_TEAMS = "max-teams";
+    public static final String DISPLAY_NAME = "display-name";
 }
