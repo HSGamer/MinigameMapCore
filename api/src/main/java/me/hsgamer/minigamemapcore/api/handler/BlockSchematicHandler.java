@@ -11,7 +11,7 @@ import java.util.*;
 public class BlockSchematicHandler implements FormatWriter, FormatReader {
     private final String name;
     @Getter
-    private final Map<BlockPosition, BlockFormatData> blockFormatDataMap = new HashMap<>();
+    private final Map<BlockPosition, BlockFormatData> map = new HashMap<>();
 
     public BlockSchematicHandler(String name) {
         this.name = name;
@@ -19,7 +19,7 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
 
     @Override
     public void read(List<String> list) {
-        blockFormatDataMap.clear();
+        map.clear();
         Map<String, String> palette = new HashMap<>();
         boolean isPalette = true;
         for (String string : list) {
@@ -34,7 +34,7 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
                 BlockPosition blockPosition = BlockPosition.fromString(split[0]);
                 String paletteData = palette.get(split[1]);
                 BlockFormatData blockFormatData = BlockFormatData.fromString(paletteData);
-                blockFormatDataMap.put(blockPosition, blockFormatData);
+                map.put(blockPosition, blockFormatData);
             }
         }
     }
@@ -44,7 +44,7 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
         List<String> strings = new ArrayList<>();
         HashSet<String> filtered = new HashSet<>();
         Map<String, Integer> palette = new HashMap<>();
-        blockFormatDataMap.values().forEach(blockFormatData -> filtered.add(blockFormatData.getAsString()));
+        map.values().forEach(blockFormatData -> filtered.add(blockFormatData.getAsString()));
         int index = 0;
         for (String string : filtered) {
             palette.put(string, index);
@@ -52,7 +52,7 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
         }
         palette.forEach((data, i) -> strings.add(i + ":" + data));
         strings.add("~");
-        blockFormatDataMap.forEach((blockPosition, blockFormatData) -> strings.add(blockPosition.getAsString() + ":" + palette.get(blockFormatData.getAsString())));
+        map.forEach((blockPosition, blockFormatData) -> strings.add(blockPosition.getAsString() + ":" + palette.get(blockFormatData.getAsString())));
         return strings;
     }
 
