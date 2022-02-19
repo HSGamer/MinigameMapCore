@@ -15,9 +15,9 @@ public class BlockPosition {
     public static BlockPosition fromString(String string) {
         String[] split = string.split(",", 3);
         BlockPosition blockPosition = new BlockPosition();
-        blockPosition.setX(Integer.parseInt(split[0]));
-        blockPosition.setY(Integer.parseInt(split[1]));
-        blockPosition.setZ(Integer.parseInt(split[2]));
+        blockPosition.setX(Integer.parseInt(split[0].trim()));
+        blockPosition.setY(Integer.parseInt(split[1].trim()));
+        blockPosition.setZ(Integer.parseInt(split[2].trim()));
         return blockPosition;
     }
 

@@ -17,11 +17,11 @@ public class RealPosition {
     public static RealPosition fromString(String string) {
         String[] split = string.split(",", 5);
         RealPosition position = new RealPosition();
-        position.setX(Double.parseDouble(split[0]));
-        position.setY(Double.parseDouble(split[1]));
-        position.setZ(Double.parseDouble(split[2]));
-        position.setYaw(Double.parseDouble(split[3]));
-        position.setPitch(Double.parseDouble(split[4]));
+        position.setX(Double.parseDouble(split[0].trim()));
+        position.setY(Double.parseDouble(split[1].trim()));
+        position.setZ(Double.parseDouble(split[2].trim()));
+        position.setYaw(Double.parseDouble(split[3].trim()));
+        position.setPitch(Double.parseDouble(split[4].trim()));
         return position;
     }
 
