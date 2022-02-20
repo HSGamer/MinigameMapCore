@@ -13,6 +13,7 @@ public final class SkyWarsConstants {
         public static final String DISPLAY_NAME = "display-name";
         public static final String MIN_POINT = "min-point";
         public static final String MAX_POINT = "max-point";
+
         private Option() {
             // EMPTY
         }
@@ -21,6 +22,7 @@ public final class SkyWarsConstants {
     public static class Spawn {
         public static final String PLAYER_SPAWN = "player-spawn";
         public static final String SPECTATOR_SPAWN = "spectator-spawn";
+
         private Spawn() {
             // EMPTY
         }
