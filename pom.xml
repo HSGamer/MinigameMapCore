@@ -11,6 +11,7 @@
     <modules>
         <module>api</module>
         <module>skywars-api</module>
+        <module>spigot</module>
     </modules>
 
     <properties>
