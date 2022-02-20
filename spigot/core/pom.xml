@@ -17,5 +17,10 @@
             <artifactId>minigame-map-core-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.cryptomorin</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>8.6.1</version>
+        </dependency>
     </dependencies>
 </project>
