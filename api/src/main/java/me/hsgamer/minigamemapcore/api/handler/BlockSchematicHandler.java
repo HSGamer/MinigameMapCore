@@ -20,19 +20,19 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
     @Override
     public void read(List<String> list) {
         map.clear();
-        Map<String, String> palette = new HashMap<>();
+        List<String> palette = new ArrayList<>();
         boolean isPalette = true;
         for (String string : list) {
             if (string.equals("~")) {
                 isPalette = false;
                 continue;
             }
-            String[] split = string.split(":", 2);
             if (isPalette) {
-                palette.put(split[0], split[1]);
+                palette.add(string);
             } else {
+                String[] split = string.split(":", 2);
                 BlockPosition blockPosition = BlockPosition.fromString(split[0]);
-                String paletteData = palette.get(split[1]);
+                String paletteData = palette.get(Integer.parseInt(split[1]));
                 BlockFormatData blockFormatData = BlockFormatData.fromString(paletteData);
                 map.put(blockPosition, blockFormatData);
             }
@@ -48,9 +48,9 @@ public class BlockSchematicHandler implements FormatWriter, FormatReader {
         int index = 0;
         for (String string : filtered) {
             palette.put(string, index);
+            strings.add(string);
             index++;
         }
-        palette.forEach((data, i) -> strings.add(i + ":" + data));
         strings.add("~");
         map.forEach((blockPosition, blockFormatData) -> strings.add(blockPosition.getAsString() + ":" + palette.get(blockFormatData.getAsString())));
         return strings;
