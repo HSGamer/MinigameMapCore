@@ -26,6 +26,7 @@ public class SlabTypeBlockHandler implements BlockDataHandler {
             if (blockData instanceof Slab) {
                 Slab.Type slabType = Slab.Type.valueOf(type.toUpperCase(Locale.ROOT));
                 ((Slab) blockData).setType(slabType);
+                block.setBlockData(blockData, false);
             }
         } else {
             if (type.equalsIgnoreCase("double")) {

@@ -26,6 +26,7 @@ public class WoodAxisBlockHandler implements BlockDataHandler {
             if (blockData instanceof Orientable) {
                 Axis type = Axis.valueOf(axis.toUpperCase(Locale.ROOT));
                 ((Orientable) blockData).setAxis(type);
+                block.setBlockData(blockData, false);
             }
         } else {
             BlockState blockState = block.getState();

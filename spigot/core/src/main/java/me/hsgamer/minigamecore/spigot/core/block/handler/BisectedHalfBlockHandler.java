@@ -25,6 +25,7 @@ public class BisectedHalfBlockHandler implements BlockDataHandler {
             if (blockData instanceof Bisected) {
                 Bisected.Half type = Bisected.Half.valueOf(half.toUpperCase(Locale.ROOT));
                 ((Bisected) blockData).setHalf(type);
+                block.setBlockData(blockData, false);
             }
         } else {
             boolean inverted = half.equalsIgnoreCase("top");
