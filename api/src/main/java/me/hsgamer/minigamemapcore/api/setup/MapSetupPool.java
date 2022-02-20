@@ -12,13 +12,13 @@ import java.util.UUID;
 public class MapSetupPool<T extends AbstractMap> {
     private final UUID uuid;
     private final List<T> maps = new ArrayList<>();
+    private final AbstractMapSetup<T> setup;
     @Setter
     private int clonePerMap = 1;
-    @Setter
-    private AbstractMapSetup<T> setup;
 
-    public MapSetupPool(UUID uuid) {
+    public MapSetupPool(UUID uuid, AbstractMapSetup<T> setup) {
         this.uuid = uuid;
+        this.setup = setup;
     }
 
     public void execute() {
