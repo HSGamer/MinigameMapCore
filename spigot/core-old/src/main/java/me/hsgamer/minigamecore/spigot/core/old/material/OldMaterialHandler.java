@@ -168,7 +168,7 @@ public class OldMaterialHandler implements MaterialHandler {
         BLOCK_HANDLERS.forEach(blockHandler -> blockHandler.handle(block, formatData, applyPhysics));
         BlockState blockState = block.getState();
         STATE_HANDLERS.forEach(blockStateHandler -> blockStateHandler.modify(blockState, formatData));
-        blockState.update(false, applyPhysics);
+        blockState.update(true, applyPhysics);
     }
 
     private enum LegacyMaterial {
