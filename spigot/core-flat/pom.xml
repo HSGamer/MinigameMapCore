@@ -9,17 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>minigame-map-core-spigot-core</artifactId>
+    <artifactId>minigame-map-core-spigot-core-flat</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>me.hsgamer</groupId>
-            <artifactId>minigame-map-core-spigot-core-old</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>me.hsgamer</groupId>
-            <artifactId>minigame-map-core-spigot-core-flat</artifactId>
+            <artifactId>minigame-map-core-spigot-core-common</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

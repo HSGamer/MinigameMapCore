@@ -9,18 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>minigame-map-core-spigot-core</artifactId>
+    <artifactId>minigame-map-core-spigot-core-common</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>me.hsgamer</groupId>
-            <artifactId>minigame-map-core-spigot-core-old</artifactId>
+            <artifactId>minigame-map-core-api</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>me.hsgamer</groupId>
-            <artifactId>minigame-map-core-spigot-core-flat</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.github.cryptomorin</groupId>
+            <artifactId>XSeries</artifactId>
+            <version>8.6.1</version>
         </dependency>
     </dependencies>
 </project>
