@@ -15,9 +15,11 @@ public class OldWoodAxisFormatHandler extends WoodAxisFormatHandler implements B
             if (materialData instanceof Tree) {
                 Tree tree = (Tree) materialData;
                 if (value.equalsIgnoreCase("x")) {
-                    tree.setDirection(BlockFace.NORTH);
-                } else if (value.equalsIgnoreCase("y")) {
                     tree.setDirection(BlockFace.WEST);
+                } else if (value.equalsIgnoreCase("y")) {
+                    tree.setDirection(BlockFace.UP);
+                } else if (value.equalsIgnoreCase("z")) {
+                    tree.setDirection(BlockFace.NORTH);
                 } else {
                     return;
                 }

@@ -10,11 +10,13 @@ public class OldOpenFormatHandler extends OpenFormatHandler implements BlockStat
     @Override
     public void modify(BlockState blockState, BlockFormatData formatData) {
         getValue(formatData).ifPresent(value -> {
-            if (!(blockState instanceof Openable)) return;
-            boolean open = Boolean.parseBoolean(value);
-            Openable openable = (Openable) blockState.getData();
-            openable.setOpen(open);
-            blockState.setData((MaterialData) openable);
+            MaterialData materialData = blockState.getData();
+            if (materialData instanceof Openable) {
+                boolean open = Boolean.parseBoolean(value);
+                Openable openable = (Openable) materialData;
+                openable.setOpen(open);
+                blockState.setData((MaterialData) openable);
+            }
         });
     }
 }
