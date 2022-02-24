@@ -9,7 +9,11 @@ public class OldPoweredBlockHandler extends PoweredBlockHandler {
     public void handle(Block block, String value) {
         boolean powered = Boolean.parseBoolean(value);
         String name = block.getType().name();
-        if (name.startsWith("REDSTONE_COMPARATOR"))
-            block.setType(OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_ON.material);
+        if (name.startsWith("REDSTONE_COMPARATOR")) {
+            block.setType(powered
+                    ? OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_ON.material
+                    : OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_OFF.material
+            );
+        }
     }
 }

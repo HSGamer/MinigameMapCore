@@ -1,7 +1,6 @@
-package me.hsgamer.minigamemapcore.spigot.core.common.blockhandler;
+package me.hsgamer.minigamemapcore.spigot.core.common;
 
 import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
-import me.hsgamer.minigamemapcore.spigot.core.common.BlockHandler;
 import org.bukkit.block.Block;
 
 public interface SingleValueBlockHandler extends BlockHandler {
