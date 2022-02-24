@@ -120,7 +120,6 @@ public class OldMaterialHandler implements MaterialHandler {
 
             // Doesn't handle stairs, slabs, fence and fence gates as they had their own separate materials.
             boolean firstType = false;
-            assert legacyMaterial != null;
             switch (legacyMaterial) {
                 case WOOD:
                 case WOOD_DOUBLE_STEP:
