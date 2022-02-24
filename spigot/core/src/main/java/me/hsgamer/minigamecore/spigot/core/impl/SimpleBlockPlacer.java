@@ -31,16 +31,23 @@ public class SimpleBlockPlacer implements BlockPlacer {
         BLOCK_HANDLERS.add(blockDataHandler);
     }
 
+    private Optional<XMaterial> getMaterial(String rawMaterial) {
+        if (!rawMaterial.startsWith("minecraft:")) {
+            return Optional.empty();
+        }
+        rawMaterial = rawMaterial.replace("minecraft:", "");
+        return XMaterial.matchXMaterial(rawMaterial);
+    }
+
+    @Override
+    public boolean isSolid(String material) {
+        return getMaterial(material).map(MATERIAL_HANDLER::isSolid).orElse(false);
+    }
+
     @Override
     public void place(World world, BlockPosition position, BlockFormatData data) {
         Block block = world.getBlockAt(position.getX(), position.getY(), position.getZ());
-        String rawMaterial = data.getMaterial();
-        if (!rawMaterial.startsWith("minecraft:")) {
-            MATERIAL_HANDLER.setType(block, XMaterial.STONE);
-            return;
-        }
-        rawMaterial = rawMaterial.replace("minecraft:", "");
-        Optional<XMaterial> optionalXMaterial = XMaterial.matchXMaterial(rawMaterial);
+        Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());
         if (optionalXMaterial.isEmpty()) {
             MATERIAL_HANDLER.setType(block, XMaterial.STONE);
             return;
