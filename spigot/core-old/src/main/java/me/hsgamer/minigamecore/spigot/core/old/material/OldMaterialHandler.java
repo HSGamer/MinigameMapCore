@@ -64,14 +64,14 @@ public class OldMaterialHandler implements MaterialHandler {
             String blockName = parsedName.substring(0, parsedName.length() - "_ITEM".length());
             Material blockMaterial = Objects.requireNonNull(Material.getMaterial(blockName),
                     () -> "Could not find block material for item '" + parsedName + "' as '" + blockName + '\'');
-            block.setType(blockMaterial);
+            block.setType(blockMaterial, applyPhysics);
         } else if (parsedName.contains("CAKE")) {
             Material blockMaterial = Material.getMaterial("CAKE_BLOCK");
-            block.setType(blockMaterial);
+            block.setType(blockMaterial, applyPhysics);
         }
 
         LegacyMaterial legacyMaterial = LegacyMaterial.getMaterial(parsedName);
-        if (legacyMaterial == LegacyMaterial.BANNER) block.setType(LegacyMaterial.STANDING_BANNER.material);
+        if (legacyMaterial == LegacyMaterial.BANNER) block.setType(LegacyMaterial.STANDING_BANNER.material, applyPhysics);
         LegacyMaterial.Handling handling = legacyMaterial == null ? null : legacyMaterial.handling;
 
         BlockState state = block.getState();
