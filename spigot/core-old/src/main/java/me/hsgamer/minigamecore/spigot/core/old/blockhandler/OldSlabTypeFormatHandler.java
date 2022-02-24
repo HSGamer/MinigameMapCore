@@ -29,7 +29,7 @@ public class OldSlabTypeFormatHandler extends SlabTypeFormatHandler implements B
                     Step step = (Step) materialData;
                     step.setInverted(value.equalsIgnoreCase("top"));
                     blockState.setData(step);
-                    blockState.update(true, applyPhysics);
+                    blockState.update(false, applyPhysics);
                 }
             }
         });

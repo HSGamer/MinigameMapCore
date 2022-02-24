@@ -14,11 +14,10 @@ public class OldFacingFormatHandler extends FacingFormatHandler implements Block
     public void modify(BlockState blockState, BlockFormatData formatData) {
         getValue(formatData).ifPresent(value -> {
             MaterialData materialData = blockState.getData();
-            if (materialData instanceof Directional) {
-                BlockFace blockFace = BlockFace.valueOf(value.toUpperCase(Locale.ROOT));
-                ((Directional) materialData).setFacingDirection(blockFace);
-                blockState.setData(materialData);
-            }
+            if (!(materialData instanceof Directional)) return;
+            BlockFace blockFace = BlockFace.valueOf(value.toUpperCase(Locale.ROOT));
+            ((Directional) materialData).setFacingDirection(blockFace);
+            blockState.setData(materialData);
         });
     }
 }
