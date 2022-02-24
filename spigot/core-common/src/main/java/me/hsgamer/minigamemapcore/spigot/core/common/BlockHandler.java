@@ -4,5 +4,5 @@ import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
 import org.bukkit.block.Block;
 
 public interface BlockHandler {
-    void handle(Block block, BlockFormatData data);
+    void handle(Block block, BlockFormatData data, boolean applyPhysics);
 }

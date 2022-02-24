@@ -23,6 +23,7 @@ package me.hsgamer.minigamecore.spigot.core.old.material;
 
 import com.cryptomorin.xseries.XMaterial;
 import me.hsgamer.minigamecore.spigot.core.old.blockhandler.*;
+import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
 import me.hsgamer.minigamemapcore.spigot.core.common.BlockHandler;
 import me.hsgamer.minigamemapcore.spigot.core.common.MaterialHandler;
 import me.hsgamer.minigamemapcore.spigot.core.common.helper.MaterialHandlerHelper;
@@ -37,21 +38,18 @@ import java.util.*;
 
 @SuppressWarnings("deprecation")
 public class OldMaterialHandler implements MaterialHandler {
-    private static final Collection<BlockHandler> HANDLERS = List.of(
-            new OldBisectedHalfBlockHandler(),
-            new OldFacingBlockHandler(),
-            new OldLitBlockHandler(),
-            new OldOpenBlockHandler(),
-            new OldPoweredBlockHandler(),
-            new OldSlabTypeBlockHandler(),
-            new OldWaterLevelBlockHandler(),
-            new OldWoodAxisBlockHandler()
+    private static final Collection<BlockHandler> BLOCK_HANDLERS = List.of(
+            new OldLitFormatHandler(),
+            new OldPoweredFormatHandler(),
+            new OldSlabTypeFormatHandler()
     );
-
-    @Override
-    public Collection<BlockHandler> getHandlers() {
-        return HANDLERS;
-    }
+    private static final Collection<BlockStateHandler> STATE_HANDLERS = List.of(
+            new OldBisectedHalfFormatHandler(),
+            new OldFacingFormatHandler(),
+            new OldOpenFormatHandler(),
+            new OldWaterLevelFormatHandler(),
+            new OldWoodAxisFormatHandler()
+    );
 
     @Override
     public void setType(Block block, XMaterial material, boolean applyPhysics) {
@@ -163,6 +161,14 @@ public class OldMaterialHandler implements MaterialHandler {
         }
 
         if (update) state.update(false, applyPhysics);
+    }
+
+    @Override
+    public void modifyBlock(Block block, BlockFormatData formatData, boolean applyPhysics) {
+        BLOCK_HANDLERS.forEach(blockHandler -> blockHandler.handle(block, formatData, applyPhysics));
+        BlockState blockState = block.getState();
+        STATE_HANDLERS.forEach(blockStateHandler -> blockStateHandler.modify(blockState, formatData));
+        blockState.update(false, applyPhysics);
     }
 
     private enum LegacyMaterial {

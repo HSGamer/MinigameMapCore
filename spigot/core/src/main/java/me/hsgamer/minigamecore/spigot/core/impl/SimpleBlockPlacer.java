@@ -47,12 +47,10 @@ public class SimpleBlockPlacer implements BlockPlacer {
         }
         XMaterial xMaterial = optionalXMaterial.get();
         MATERIAL_HANDLER.setType(block, xMaterial);
-        for (BlockHandler blockHandler : MATERIAL_HANDLER.getHandlers()) {
-            blockHandler.handle(block, data);
-        }
+        MATERIAL_HANDLER.modifyBlock(block, data);
 
         for (BlockHandler blockHandler : BLOCK_HANDLERS) {
-            blockHandler.handle(block, data);
+            blockHandler.handle(block, data, false);
         }
     }
 }
