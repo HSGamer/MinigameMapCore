@@ -21,7 +21,8 @@ public class FlatMaterialHandler implements MaterialHandler {
             new FlatPoweredFormatHandler(),
             new FlatSlabTypeFormatHandler(),
             new FlatWaterLevelFormatHandler(),
-            new FlatWoodAxisFormatHandler()
+            new FlatWoodAxisFormatHandler(),
+            new FlatShapeFormatHandler()
     );
 
     @Override

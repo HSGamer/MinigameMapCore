@@ -49,7 +49,8 @@ public class OldMaterialHandler implements MaterialHandler {
             new OldOpenFormatHandler(),
             new OldWaterLevelFormatHandler(),
             new OldWoodAxisFormatHandler(),
-            new OldSlabTypeFormatHandler()
+            new OldSlabTypeFormatHandler(),
+            new OldShapeFormatHandler()
     );
 
     @Override
