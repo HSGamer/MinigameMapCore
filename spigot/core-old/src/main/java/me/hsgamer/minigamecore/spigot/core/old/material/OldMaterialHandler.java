@@ -41,14 +41,15 @@ public class OldMaterialHandler implements MaterialHandler {
     private static final Collection<BlockHandler> BLOCK_HANDLERS = List.of(
             new OldLitFormatHandler(),
             new OldPoweredFormatHandler(),
-            new OldSlabTypeFormatHandler()
+            new OldDoubleSlabTypeFormatHandler()
     );
     private static final Collection<BlockStateHandler> STATE_HANDLERS = List.of(
             new OldBisectedHalfFormatHandler(),
             new OldFacingFormatHandler(),
             new OldOpenFormatHandler(),
             new OldWaterLevelFormatHandler(),
-            new OldWoodAxisFormatHandler()
+            new OldWoodAxisFormatHandler(),
+            new OldSlabTypeFormatHandler()
     );
 
     @Override
@@ -69,7 +70,8 @@ public class OldMaterialHandler implements MaterialHandler {
         }
 
         LegacyMaterial legacyMaterial = LegacyMaterial.getMaterial(parsedName);
-        if (legacyMaterial == LegacyMaterial.BANNER) block.setType(LegacyMaterial.STANDING_BANNER.material, applyPhysics);
+        if (legacyMaterial == LegacyMaterial.BANNER)
+            block.setType(LegacyMaterial.STANDING_BANNER.material, applyPhysics);
         LegacyMaterial.Handling handling = legacyMaterial == null ? null : legacyMaterial.handling;
 
         BlockState state = block.getState();
@@ -168,7 +170,7 @@ public class OldMaterialHandler implements MaterialHandler {
         BLOCK_HANDLERS.forEach(blockHandler -> blockHandler.handle(block, formatData, applyPhysics));
         BlockState blockState = block.getState();
         STATE_HANDLERS.forEach(blockStateHandler -> blockStateHandler.modify(blockState, formatData));
-        blockState.update(true, applyPhysics);
+        blockState.update(false, applyPhysics);
     }
 
     private enum LegacyMaterial {

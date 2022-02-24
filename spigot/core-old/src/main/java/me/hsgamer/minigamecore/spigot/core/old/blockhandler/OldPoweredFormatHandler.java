@@ -12,8 +12,8 @@ public class OldPoweredFormatHandler extends PoweredFormatHandler implements Blo
         String name = block.getType().name();
         if (name.startsWith("REDSTONE_COMPARATOR")) {
             block.setType(powered
-                    ? OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_ON.material
-                    : OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_OFF.material
+                            ? OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_ON.material
+                            : OldMaterialHandler.BlockMaterial.REDSTONE_COMPARATOR_OFF.material
                     , applyPhysics
             );
         }
