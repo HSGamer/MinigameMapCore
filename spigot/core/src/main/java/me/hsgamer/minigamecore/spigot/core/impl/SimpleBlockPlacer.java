@@ -40,11 +40,6 @@ public class SimpleBlockPlacer implements BlockPlacer {
     }
 
     @Override
-    public boolean isSolid(String material) {
-        return getMaterial(material).map(MATERIAL_HANDLER::isSolid).orElse(false);
-    }
-
-    @Override
     public void place(World world, BlockPosition position, BlockFormatData data) {
         Block block = world.getBlockAt(position.getX(), position.getY(), position.getZ());
         Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());

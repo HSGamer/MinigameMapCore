@@ -1,4 +1,4 @@
-package me.hsgamer.minigamemapcore.spigot.core.common;
+package me.hsgamer.minigamemapcore.api.data.handler;
 
 import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
 

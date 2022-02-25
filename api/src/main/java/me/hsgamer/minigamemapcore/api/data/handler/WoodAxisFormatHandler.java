@@ -1,6 +1,4 @@
-package me.hsgamer.minigamemapcore.spigot.core.common.blockhandler;
-
-import me.hsgamer.minigamemapcore.spigot.core.common.SingleValueFormatHandler;
+package me.hsgamer.minigamemapcore.api.data.handler;
 
 public abstract class WoodAxisFormatHandler implements SingleValueFormatHandler {
     @Override

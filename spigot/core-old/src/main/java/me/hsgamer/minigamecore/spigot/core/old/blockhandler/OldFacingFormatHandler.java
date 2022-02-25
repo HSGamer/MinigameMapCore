@@ -1,7 +1,7 @@
 package me.hsgamer.minigamecore.spigot.core.old.blockhandler;
 
 import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
-import me.hsgamer.minigamemapcore.spigot.core.common.blockhandler.FacingFormatHandler;
+import me.hsgamer.minigamemapcore.api.data.handler.FacingFormatHandler;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.material.Directional;

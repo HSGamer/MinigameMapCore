@@ -2,7 +2,7 @@ package me.hsgamer.minigamecore.spigot.core.old.blockhandler;
 
 import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
 import me.hsgamer.minigamemapcore.spigot.core.common.BlockHandler;
-import me.hsgamer.minigamemapcore.spigot.core.common.blockhandler.SlabTypeFormatHandler;
+import me.hsgamer.minigamemapcore.api.data.handler.SlabTypeFormatHandler;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 

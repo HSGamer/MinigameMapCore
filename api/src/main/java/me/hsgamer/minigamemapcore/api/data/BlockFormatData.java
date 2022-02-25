@@ -37,10 +37,14 @@ public class BlockFormatData {
         return LegacyCompatibility.getMaterialLegacyId(material);
     }
 
-    public String getAsString() {
-        String propertiesString = properties.entrySet().stream()
+    public String getPropertiesAsString() {
+        return properties.entrySet().stream()
                 .map(entry -> entry.getKey() + "=" + entry.getValue().toString().toLowerCase(Locale.ROOT))
                 .collect(Collectors.joining(","));
+    }
+
+    public String getAsString() {
+        String propertiesString = getPropertiesAsString();
         return material + (propertiesString.isBlank() ? "" : ";" + propertiesString);
     }
 }
