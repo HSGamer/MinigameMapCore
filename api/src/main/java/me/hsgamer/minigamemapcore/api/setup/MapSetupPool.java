@@ -41,7 +41,7 @@ public class MapSetupPool<T extends AbstractMap> implements Runnable {
     }
 
     public void executeSync() {
-        run();
+        execute().join();
     }
 
     @Override
