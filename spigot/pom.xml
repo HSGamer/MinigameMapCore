@@ -20,7 +20,6 @@
         <module>core-old</module>
         <module>core-flat</module>
         <module>core</module>
-        <module>skywars-impl-berryskywars</module>
     </modules>
 
     <repositories>

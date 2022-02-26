@@ -17,10 +17,5 @@
             <artifactId>minigame-map-core-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>me.hsgamer</groupId>
-            <artifactId>minigame-map-core-spigot-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 </project>
