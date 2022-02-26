@@ -7,8 +7,11 @@ import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
 import me.hsgamer.minigamemapcore.api.data.BlockPosition;
 import me.hsgamer.minigamemapcore.spigot.core.common.BlockPlacer;
 import me.hsgamer.minigamemapcore.spigot.core.common.MaterialHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -22,6 +25,16 @@ public class SimpleBlockPlacer implements BlockPlacer {
         } else {
             MATERIAL_HANDLER = new OldMaterialHandler();
         }
+    }
+
+    private final Plugin plugin;
+
+    public SimpleBlockPlacer(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
+    public SimpleBlockPlacer() {
+        this(JavaPlugin.getProvidingPlugin(SimpleBlockPlacer.class));
     }
 
     private Optional<XMaterial> getMaterial(String rawMaterial) {
@@ -39,15 +52,20 @@ public class SimpleBlockPlacer implements BlockPlacer {
 
     @Override
     public CompletableFuture<Void> place(World world, BlockPosition position, BlockFormatData data) {
-        Block block = world.getBlockAt(position.getX(), position.getY(), position.getZ());
-        Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());
-        if (optionalXMaterial.isEmpty()) {
-            MATERIAL_HANDLER.setType(block, XMaterial.STONE);
-            return CompletableFuture.completedFuture(null);
-        }
-        XMaterial xMaterial = optionalXMaterial.get();
-        MATERIAL_HANDLER.setType(block, xMaterial);
-        MATERIAL_HANDLER.modifyBlock(block, data);
-        return CompletableFuture.completedFuture(null);
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+            Block block = world.getBlockAt(position.getX(), position.getY(), position.getZ());
+            Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());
+            if (optionalXMaterial.isEmpty()) {
+                MATERIAL_HANDLER.setType(block, XMaterial.STONE);
+                future.complete(null);
+                return;
+            }
+            XMaterial xMaterial = optionalXMaterial.get();
+            MATERIAL_HANDLER.setType(block, xMaterial);
+            MATERIAL_HANDLER.modifyBlock(block, data);
+            future.complete(null);
+        });
+        return future;
     }
 }
