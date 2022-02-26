@@ -58,12 +58,11 @@ public class SimpleBlockPlacer implements BlockPlacer {
             Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());
             if (optionalXMaterial.isEmpty()) {
                 MATERIAL_HANDLER.setType(block, XMaterial.STONE);
-                future.complete(null);
-                return;
+            } else {
+                XMaterial xMaterial = optionalXMaterial.get();
+                MATERIAL_HANDLER.setType(block, xMaterial);
+                MATERIAL_HANDLER.modifyBlock(block, data);
             }
-            XMaterial xMaterial = optionalXMaterial.get();
-            MATERIAL_HANDLER.setType(block, xMaterial);
-            MATERIAL_HANDLER.modifyBlock(block, data);
             future.complete(null);
         });
         return future;
