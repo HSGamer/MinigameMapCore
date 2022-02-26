@@ -53,7 +53,7 @@ public class SimpleBlockPlacer implements BlockPlacer {
     @Override
     public CompletableFuture<Void> place(World world, BlockPosition position, BlockFormatData data) {
         CompletableFuture<Void> future = new CompletableFuture<>();
-        Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+        Bukkit.getScheduler().runTask(plugin, () -> {
             Block block = world.getBlockAt(position.getX(), position.getY(), position.getZ());
             Optional<XMaterial> optionalXMaterial = getMaterial(data.getMaterial());
             if (optionalXMaterial.isEmpty()) {
