@@ -7,16 +7,8 @@ import java.util.function.Supplier;
 public class StepMapSetup implements Iterator<CompletableFuture<Void>> {
     private final Queue<Supplier<CompletableFuture<Void>>> steps = new LinkedList<>();
 
-    public StepMapSetup addStep(Supplier<CompletableFuture<Void>> step) {
+    public <T extends Supplier<CompletableFuture<Void>>> StepMapSetup addStep(T step) {
         steps.add(step);
-        return this;
-    }
-
-    public StepMapSetup addStep(Step step) {
-        addStep(() -> {
-            step.apply();
-            return CompletableFuture.completedFuture(null);
-        });
         return this;
     }
 
@@ -31,7 +23,12 @@ public class StepMapSetup implements Iterator<CompletableFuture<Void>> {
     }
 
     @FunctionalInterface
-    public interface Step {
+    public interface SimpleStep extends Supplier<CompletableFuture<Void>> {
         void apply();
+
+        default CompletableFuture<Void> get() {
+            apply();
+            return CompletableFuture.completedFuture(null);
+        }
     }
 }

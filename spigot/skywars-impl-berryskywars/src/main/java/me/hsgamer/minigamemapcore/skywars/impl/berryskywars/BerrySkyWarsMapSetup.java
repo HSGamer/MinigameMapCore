@@ -37,7 +37,7 @@ public class BerrySkyWarsMapSetup extends BukkitRunnable implements SkyWarsMapSe
             return;
         }
         SimpleBlockPlacer placer = new SimpleBlockPlacer(plugin);
-        stepMapSetup.addStep(() -> {
+        stepMapSetup.<StepMapSetup.SimpleStep>addStep(() -> {
             String arenaName = map.getOptionHandler().getMap().get(SkyWarsConstants.Option.INTERNAL_NAME);
             if (id > 0) {
                 arenaName += "-" + id;
