@@ -1,33 +1,23 @@
 package me.hsgamer.minigamecore.spigot.core.old.blockhandler;
 
-import me.hsgamer.minigamecore.spigot.core.old.material.OldMaterialHandler;
+import com.cryptomorin.xseries.XBlock;
 import me.hsgamer.minigamemapcore.api.data.BlockFormatData;
-import me.hsgamer.minigamemapcore.spigot.core.common.BlockHandler;
 import me.hsgamer.minigamemapcore.api.data.handler.LitFormatHandler;
+import me.hsgamer.minigamemapcore.spigot.core.common.BlockHandler;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 public class OldLitFormatHandler extends LitFormatHandler implements BlockHandler {
     private void handle(Block block, String value, boolean applyPhysics) {
         boolean lit = Boolean.parseBoolean(value);
         String name = block.getType().name();
+        XBlock.setLit(block, lit);
         if (name.endsWith("FURNACE")) {
-            block.setType(lit
-                            ? OldMaterialHandler.BlockMaterial.BURNING_FURNACE.material
-                            : OldMaterialHandler.BlockMaterial.FURNACE.material
-                    , applyPhysics
-            );
+            block.setType(Material.valueOf(lit ? "BURNING_FURNACE" : "FURNACE"), applyPhysics);
         } else if (name.startsWith("REDSTONE_LAMP")) {
-            block.setType(lit
-                            ? OldMaterialHandler.BlockMaterial.REDSTONE_LAMP_ON.material
-                            : OldMaterialHandler.BlockMaterial.REDSTONE_LAMP_OFF.material
-                    , applyPhysics
-            );
+            block.setType(Material.valueOf(lit ? "REDSTONE_LAMP_ON" : "REDSTONE_LAMP_OFF"), applyPhysics);
         } else if (name.startsWith("REDSTONE_TORCH")) {
-            block.setType(lit
-                            ? OldMaterialHandler.BlockMaterial.REDSTONE_TORCH_ON.material
-                            : OldMaterialHandler.BlockMaterial.REDSTONE_TORCH_OFF.material
-                    , applyPhysics
-            );
+            block.setType(Material.valueOf(lit ? "REDSTONE_TORCH_ON" : "REDSTONE_TORCH_OFF"), applyPhysics);
         }
     }
 
